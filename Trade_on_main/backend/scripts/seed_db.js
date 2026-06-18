@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const xlsx = require('xlsx');
-require('dotenv').config({ path: '../.env' });
+const path = require('path');
+require('dotenv').config({ path: path.join(__dirname, '../../.env') });
 const TradeRecord = require('../models/TradeRecord');
 
 async function seed() {
@@ -10,7 +11,7 @@ async function seed() {
     console.log('Connected!');
 
     console.log('Reading Excel file...');
-    const workbook = xlsx.readFile('../../commodity_trade_statistics_final.xlsx');
+    const workbook = xlsx.readFile(path.join(__dirname, '../../data/commodity_trade_statistics_final.xlsx'));
     const sheetName = workbook.SheetNames[0];
     const sheet = workbook.Sheets[sheetName];
     

@@ -1,7 +1,19 @@
+# Environment Variables
 .env
+.env.*
+
+# Dependencies
 node_modules/
-.DS_Store
+
+# Logs
 *.log
+backend/logs/
+
+# Build and Temp folders
 dist/
 build/
+.DS_Store
 .vscode/
+
+# Data sets (optional: uncomment to ignore large data files)
+# data/

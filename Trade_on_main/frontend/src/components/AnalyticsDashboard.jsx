@@ -32,9 +32,9 @@ export default function AnalyticsDashboard({ token }) {
     const fetchData = async () => {
       try {
         const [historyRes, messagesRes, statsRes] = await Promise.all([
-          axios.get('http://localhost:5001/api/history', { headers: { Authorization: `Bearer ${token}` } }),
-          axios.get('http://localhost:5001/api/outreach-messages', { headers: { Authorization: `Bearer ${token}` } }),
-          axios.get('http://localhost:5001/api/stats', { headers: { Authorization: `Bearer ${token}` } })
+          axios.get('http://localhost:5000/api/history', { headers: { Authorization: `Bearer ${token}` } }),
+          axios.get('http://localhost:5000/api/outreach-messages', { headers: { Authorization: `Bearer ${token}` } }),
+          axios.get('http://localhost:5000/api/stats', { headers: { Authorization: `Bearer ${token}` } })
         ]);
         setHistory(historyRes.data);
         setMessages(messagesRes.data);
@@ -58,7 +58,7 @@ export default function AnalyticsDashboard({ token }) {
     if (!newMessage.trim() || !selectedContact) return;
 
     try {
-      const res = await axios.post('http://localhost:5001/api/send-outreach', {
+      const res = await axios.post('http://localhost:5000/api/send-outreach', {
         target_country: selectedContact.target_country,
         commodity: selectedContact.commodity,
         messageContent: newMessage,

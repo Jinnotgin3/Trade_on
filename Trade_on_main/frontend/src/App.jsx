@@ -51,7 +51,7 @@ function App() {
   }, [user]);
 
   useEffect(() => {
-    axios.get('http://localhost:5001/api/metadata')
+    axios.get('http://localhost:5000/api/metadata')
       .then(res => setMetadata(res.data))
       .catch(err => console.error(err));
   }, []);
@@ -61,11 +61,11 @@ function App() {
     setLoading(true);
     try {
       // Save onboarding data to DB
-      await axios.post('http://localhost:5001/api/onboarding', formData, {
+      await axios.post('http://localhost:5000/api/onboarding', formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
-      const res = await axios.post('http://localhost:5001/api/match', formData, {
+      const res = await axios.post('http://localhost:5000/api/match', formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setRecommendations(res.data);
@@ -93,7 +93,7 @@ function App() {
     }
 
     try {
-      await axios.post('http://localhost:5001/api/swipe', {
+      await axios.post('http://localhost:5000/api/swipe', {
         user_country: formData.country,
         target_country: currentRec.target_country,
         commodity: formData.commodity,
@@ -112,7 +112,7 @@ function App() {
     if (!formData.commodity) return;
     setRankingLoading(true);
     try {
-      const res = await axios.post('http://localhost:5001/api/rank', {
+      const res = await axios.post('http://localhost:5000/api/rank', {
         commodity: formData.commodity,
         flow: formData.flow
       });

@@ -1,83 +1,74 @@
-# TradeOn
+# TradeOn 🌍🤝
 
-**TradeOn** is a premium AI-powered B2B matchmaking platform designed to help global exporters find and connect with high-compatibility international buyers in seconds. Using a Tinder-inspired "Swipe" interface, the platform turns complex trade data into an intuitive, actionable experience.
+**TradeOn** is a premium AI-powered B2B matchmaking platform designed to help global exporters find and connect with high-compatibility international buyers. Using a Tinder-inspired "Swipe" interface, it turns complex UN commodity trade data into an intuitive, actionable experience.
 
 ---
 
-## ✨ Key Features
+## ✨ Features
 
-### 🔍 1. Intelligent Matchmaking
-*   **Swipe-Right to Grow**: Review curated trade partners based on your specific commodity and capacity.
-*   **AI Compatibility Scoring**: Every match includes a detailed breakdown of trade volume, location bias, and product alignment.
-*   **Predictive Analytics**: Our engine analyzes historical trade records to suggest the most lucrative markets for your business.
-
-### 🤖 2. Explainable AI (XAI) Dashboard
-*   **Ask AI Strategist**: Get instant, data-driven explanations of *why* a specific buyer is a good match.
-*   **Portfolio Analysis**: Our AI analyzes your saved matches to provide a cohesive executive summary of your overall trade strategy and diversification.
-
-### ✉️ 3. AI Outreach Engine (Message Hub)
-*   **Tone-Aware Generation**: Automatically draft professional outreach emails in **Formal**, **Friendly**, or **Direct** tones.
-*   **WhatsApp-Style Interface**: Manage all your international B2B communications in a familiar, intuitive messaging hub.
-*   **Persistent History**: Every outreach is saved to your account for easy follow-ups and pipeline management.
-
-### 🛡️ 4. Secure Onboarding
-*   **3-Step Wizard**: Quickly define your operational country, commodity of interest, and trade flow (Export/Import).
-*   **Persistent User Profiles**: Your preferences and swipe history are securely stored in a MongoDB database.
+- **🔍 Intelligent Matchmaking:** Swipe-to-connect with curated trade partners. Powered by a high-performance MongoDB aggregation engine analyzing historical commodity flow.
+- **🤖 Explainable AI (XAI):** Powered by Google Gemini. Instantly get data-driven strategic explanations on *why* a specific buyer matches your portfolio.
+- **✉️ AI Outreach Hub:** Draft and manage professional outreach emails with tone-aware AI generation (Formal, Friendly, Direct).
+- **🛡️ Secure & Scalable:** JWT Authentication, optimized modular routing, and persistent file-based logging (Winston/Morgan).
 
 ---
 
 ## 🛠️ Tech Stack
 
--   **Frontend**: React (Vite), Tailwind CSS, Framer Motion (for smooth swipe animations), Lucide-React (icons).
--   **Backend**: Node.js, Express.
--   **Database**: MongoDB (Mongoose).
--   **AI Engine**: Google Gemini 2.0 (Generative AI).
--   **Authentication**: JWT (JSON Web Tokens) with Bcrypt password hashing.
+- **Frontend:** React (Vite), Tailwind CSS, Framer Motion
+- **Backend:** Node.js, Express, Winston/Morgan (Logging)
+- **Database:** MongoDB Atlas (Mongoose)
+- **AI Engine:** Google Gemini 2.0 Flash
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
--   Node.js (v18+)
--   MongoDB Atlas or a local MongoDB instance.
--   Google Gemini API Key.
+- Node.js (v18+)
+- MongoDB Atlas (or local instance)
+- Google Gemini API Key
 
-### Installation
+### 1. Environment Setup
+Create a `.env` file in the **root directory** with the following keys:
+```env
+MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/trade_on
+GEMINI_API_KEY=your_gemini_api_key
+PORT=5000
+JWT_SECRET=your_super_secret_key_here
+```
 
-1.  **Clone the Repository**:
-    ```bash
-    git clone <repository-url>
-    cd TradeOn
-    ```
+### 2. Installation
+Install dependencies for both frontend and backend:
+```bash
+# Backend
+cd backend && npm install
 
-2.  **Environment Setup**:
-    Create a `.env` file in the root directory:
-    ```env
-    MONGODB_URI=your_mongodb_uri
-    GEMINI_API_KEY=your_gemini_api_key
-    PORT=5001
-    ```
+# Frontend
+cd ../frontend && npm install
+```
 
-3.  **Install Dependencies**:
-    ```bash
-    # Backend
-    cd backend && npm install
-    
-    # Frontend
-    cd ../frontend && npm install
-    ```
+### 3. Database Seeding
+To populate the database with global trade records (Make sure your `.env` is configured first):
+```bash
+cd backend
+node scripts/seed_db.js
+```
 
-4.  **Run the Application**:
-    ```bash
-    # Start Backend (from /backend)
-    npm start
-    
-    # Start Frontend (from /frontend)
-    npm run dev
-    ```
+### 4. Running the App
+Open two separate terminals:
 
----
+**Terminal 1 (Backend):**
+```bash
+cd backend
+npm run dev
+```
+*(Note: Logs are automatically saved to `backend/logs/error.log` and `combined.log`)*
 
+**Terminal 2 (Frontend):**
+```bash
+cd frontend
+npm run dev
+```
 
-
+Navigate to `http://localhost:5173` to start matching!

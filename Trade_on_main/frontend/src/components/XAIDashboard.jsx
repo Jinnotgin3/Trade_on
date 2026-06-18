@@ -16,8 +16,8 @@ export default function XAIDashboard({ userCountry, token }) {
     const fetchData = async () => {
       try {
         const [analysisRes, historyRes] = await Promise.all([
-          axios.get('http://localhost:5001/api/analyze-portfolio', { headers: { Authorization: `Bearer ${token}` } }),
-          axios.get('http://localhost:5001/api/history', { headers: { Authorization: `Bearer ${token}` } })
+          axios.get('http://localhost:5000/api/analyze-portfolio', { headers: { Authorization: `Bearer ${token}` } }),
+          axios.get('http://localhost:5000/api/history', { headers: { Authorization: `Bearer ${token}` } })
         ]);
         setAnalysis(analysisRes.data.analysis);
         setHistory(historyRes.data.filter(h => h.status === 'liked'));

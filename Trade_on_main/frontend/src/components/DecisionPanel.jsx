@@ -37,7 +37,7 @@ export default function DecisionPanel({ lead, token, onClose, onSave, onSent }) 
     const currentTone = tone || initialTone;
     setEmailTone(currentTone);
     try {
-      const res = await axios.post('http://localhost:5001/api/generate-outreach', {
+      const res = await axios.post('http://localhost:5000/api/generate-outreach', {
         target_country: lead.target_country,
         commodity: lead.commodity,
         flow: lead.flow,
@@ -56,7 +56,7 @@ export default function DecisionPanel({ lead, token, onClose, onSave, onSent }) 
   const handleSendOutreach = async () => {
     setSending(true);
     try {
-      await axios.post('http://localhost:5001/api/send-outreach', {
+      await axios.post('http://localhost:5000/api/send-outreach', {
         target_country: lead.target_country,
         commodity: lead.commodity,
         messageContent: emailContent,

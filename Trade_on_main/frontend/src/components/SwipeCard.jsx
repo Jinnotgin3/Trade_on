@@ -28,7 +28,7 @@ export default function SwipeCard({ recommendation, onSwipe, token, userCountry 
   const getAdvice = async () => {
     setLoadingAdvice(true);
     try {
-      const res = await axios.post('http://localhost:5001/api/analyze-card', {
+      const res = await axios.post('http://localhost:5000/api/analyze-card', {
         user_country: userCountry,
         target_country: recommendation.target_country,
         commodity: recommendation.commodity,

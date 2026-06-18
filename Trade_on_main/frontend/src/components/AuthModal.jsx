@@ -16,7 +16,7 @@ const AuthModal = ({ isOpen, onClose, onAuthSuccess }) => {
 
     const endpoint = isLogin ? 'login' : 'register';
     try {
-      const res = await axios.post(`http://localhost:5001/api/${endpoint}`, formData);
+      const res = await axios.post(`http://localhost:5000/api/${endpoint}`, formData);
       onAuthSuccess(res.data);
       onClose();
     } catch (err) {

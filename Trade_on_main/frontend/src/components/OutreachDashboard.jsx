@@ -19,7 +19,7 @@ const OutreachDashboard = ({ token }) => {
 
   const fetchMessages = async () => {
     try {
-      const res = await axios.get('http://localhost:5001/api/outreach-messages', {
+      const res = await axios.get('http://localhost:5000/api/outreach-messages', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMessages(res.data);
