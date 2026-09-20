@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 import { X, Heart, TrendingUp, BrainCircuit, Loader2 } from 'lucide-react';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 
@@ -28,7 +29,7 @@ export default function SwipeCard({ recommendation, onSwipe, token, userCountry 
   const getAdvice = async () => {
     setLoadingAdvice(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/analyze-card', {
+      const res = await axios.post(`${API_BASE_URL}/api/analyze-card`, {
         user_country: userCountry,
         target_country: recommendation.target_country,
         commodity: recommendation.commodity,

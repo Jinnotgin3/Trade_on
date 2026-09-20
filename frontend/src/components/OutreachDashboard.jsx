@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 import {
   Search, Filter, Send, MoreVertical, Paperclip, Smile,
   User, CheckCheck, Clock, Mail, Globe, BrainCircuit,
@@ -19,7 +20,7 @@ const OutreachDashboard = ({ token }) => {
 
   const fetchMessages = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/outreach-messages', {
+      const res = await axios.get(`${API_BASE_URL}/api/outreach-messages`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setMessages(res.data);

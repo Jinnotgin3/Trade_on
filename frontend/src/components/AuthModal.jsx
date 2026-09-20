@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { X, Mail, Lock, User, ArrowRight, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { API_BASE_URL } from '../config';
 
 const AuthModal = ({ isOpen, onClose, onAuthSuccess }) => {
   const [isLogin, setIsLogin] = useState(true);
@@ -16,7 +17,7 @@ const AuthModal = ({ isOpen, onClose, onAuthSuccess }) => {
 
     const endpoint = isLogin ? 'login' : 'register';
     try {
-      const res = await axios.post(`http://localhost:5000/api/${endpoint}`, formData);
+      const res = await axios.post(`${API_BASE_URL}/api/${endpoint}`, formData);
       onAuthSuccess(res.data);
       onClose();
     } catch (err) {

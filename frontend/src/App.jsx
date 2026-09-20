@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { RefreshCw, LayoutDashboard, Search, BrainCircuit, Home, MessageSquare } from 'lucide-react';
+import { API_BASE_URL } from './config';
 import LandingPage from './components/LandingPage';
 import SwipeCard from './components/SwipeCard';
 import XAIDashboard from './components/XAIDashboard';
@@ -51,7 +52,7 @@ function App() {
   }, [user]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/metadata')
+    axios.get(`${API_BASE_URL}/api/metadata`)
       .then(res => setMetadata(res.data))
       .catch(err => console.error(err));
   }, []);
@@ -61,11 +62,11 @@ function App() {
     setLoading(true);
     try {
       // Save onboarding data to DB
-      await axios.post('http://localhost:5000/api/onboarding', formData, {
+      await axios.post(`${API_BASE_URL}/api/onboarding`, formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
-      const res = await axios.post('http://localhost:5000/api/match', formData, {
+      const res = await axios.post(`${API_BASE_URL}/api/match`, formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setRecommendations(res.data);
@@ -93,7 +94,7 @@ function App() {
     }
 
     try {
-      await axios.post('http://localhost:5000/api/swipe', {
+      await axios.post(`${API_BASE_URL}/api/swipe`, {
         user_country: formData.country,
         target_country: currentRec.target_country,
         commodity: formData.commodity,
@@ -112,7 +113,7 @@ function App() {
     if (!formData.commodity) return;
     setRankingLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/rank', {
+      const res = await axios.post(`${API_BASE_URL}/api/rank`, {
         commodity: formData.commodity,
         flow: formData.flow
       });
@@ -125,21 +126,21 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-[var(--color-cream)] text-[var(--color-ink)]">
+    <div className="min-h-screen flex flex-col items-center bg-cream text-ink">
       {view !== 'landing' && (
-        <nav className="w-full glass p-4 flex justify-between items-center sticky top-0 z-50 border-b border-[var(--color-ink)]/10">
+        <nav className="w-full glass p-4 flex justify-between items-center sticky top-0 z-50 border-b border-ink/10">
           <h1
-            className="text-2xl font-bold font-playfair text-[var(--color-ink)] flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity"
+            className="text-2xl font-bold font-playfair text-inkter gap-2 cursor-pointer hover:opacity-80 transition-opacity"
             onClick={() => setView('landing')}
             title="Go to Landing Page"
           >
-            <RefreshCw className="text-[var(--color-purple-500)]" /> Swipe<span className="text-[var(--color-purple-500)]">to</span>Export
+            <RefreshCw className="text-purple-500" /> Swipe<span className="text-purple-500">to</span>Export
           </h1>
           <div className="flex gap-4 items-center">
-            <button onClick={() => setView('landing')} className="transition-colors text-[var(--color-ink)]/50 hover:text-[var(--color-ink)]" title="Home">
+            <button onClick={() => setView('landing')} className="transition-colors text-ink/50r(--color-ink)]" title="Home">
               <Home size={24} />
             </button>
-            <button onClick={() => setView('setup')} className={`transition-colors ${view === 'setup' ? 'text-[var(--color-purple-500)]' : 'text-[var(--color-ink)]/50 hover:text-[var(--color-purple-500)]'}`} title="Find Partners">
+            <button onClick={() => setView('setup')} className={`transition-colors ${view === 'setup' ? 'text-purple-500' : 'text-ink/50 hover:text-purple-500'}`} title="Find Partners">
               <Search size={24} />
             </button>
             {recommendations.length > 0 && (

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 import {
   BrainCircuit, Activity, ShieldCheck, Zap, TrendingUp, Info,
   BarChart3, Layers, Database, Compass, CheckCircle2
@@ -16,8 +17,8 @@ export default function XAIDashboard({ userCountry, token }) {
     const fetchData = async () => {
       try {
         const [analysisRes, historyRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/analyze-portfolio', { headers: { Authorization: `Bearer ${token}` } }),
-          axios.get('http://localhost:5000/api/history', { headers: { Authorization: `Bearer ${token}` } })
+          axios.get(`${API_BASE_URL}/api/analyze-portfolio`, { headers: { Authorization: `Bearer ${token}` } }),
+          axios.get(`${API_BASE_URL}/api/history`, { headers: { Authorization: `Bearer ${token}` } })
         ]);
         setAnalysis(analysisRes.data.analysis);
         setHistory(historyRes.data.filter(h => h.status === 'liked'));
